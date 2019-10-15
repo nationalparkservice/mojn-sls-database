@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>mojn_sls_database</RootNamespace>
     <AssemblyName>mojn_sls_database</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,91 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="data\" />
+    <Folder Include="data\Tables\" />
+    <Folder Include="lookup\" />
+    <Folder Include="lookup\Tables\" />
+    <Folder Include="ref\" />
+    <Folder Include="ref\Tables\" />
+    <Folder Include="metadata\" />
+    <Folder Include="metadata\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="data\Tables\BMISample.sql" />
+    <Build Include="lookup\Tables\SiteType.sql" />
+    <Build Include="lookup\Tables\BMISamplingMethod.sql" />
+    <Build Include="ref\Tables\PhotoShortDescription.sql" />
+    <Build Include="lookup\Tables\QuadratSpacingEven.sql" />
+    <Build Include="data\Tables\Subsite.sql" />
+    <Build Include="lookup\Tables\MeasurementMethod.sql" />
+    <Build Include="data\Tables\Site.sql" />
+    <Build Include="data\Tables\VisitPersonnel.sql" />
+    <Build Include="lookup\Tables\WaterLevelType.sql" />
+    <Build Include="data\Tables\DischargeOpenWaterArea.sql" />
+    <Build Include="ref\Tables\Logger.sql" />
+    <Build Include="lookup\Tables\FlowCondition.sql" />
+    <Build Include="lookup\Tables\WellSiteStatus.sql" />
+    <Build Include="lookup\Tables\ProtectedStatus.sql" />
+    <Build Include="ref\Tables\Tape.sql" />
+    <Build Include="lookup\Tables\IsLibraryPhoto.sql" />
+    <Build Include="lookup\Tables\HorizontalDatum.sql" />
+    <Build Include="data\Tables\Photo.sql" />
+    <Build Include="lookup\Tables\DataQualityFlag.sql" />
+    <Build Include="lookup\Tables\Park.sql" />
+    <Build Include="ref\Tables\GPSUnit.sql" />
+    <Build Include="ref\Tables\Personnel.sql" />
+    <Build Include="data\Tables\WellActivity.sql" />
+    <Build Include="data\Tables\PhotoCoordinates.sql" />
+    <Build Include="ref\Tables\WellTapeCorrection.sql" />
+    <Build Include="ref\Tables\WaterQualityInstrument.sql" />
+    <Build Include="lookup\Tables\BMIStartLocation.sql" />
+    <Build Include="lookup\Tables\PTBatteryReplaced.sql" />
+    <Build Include="lookup\Tables\PTMemoryCleared.sql" />
+    <Build Include="data\Tables\WellLevel.sql" />
+    <Build Include="lookup\Tables\PTFileDownloaded.sql" />
+    <Build Include="data\Tables\DischargePoolStage.sql" />
+    <Build Include="ref\Tables\Camera.sql" />
+    <Build Include="data\Tables\DischargeSpringbrookLength.sql" />
+    <Build Include="ref\Tables\Protocol.sql" />
+    <Build Include="data\Tables\DischargePTDownload.sql" />
+    <Build Include="ref\Tables\NetSize.sql" />
+    <Build Include="lookup\Tables\SurfaceWaterPresent.sql" />
+    <Build Include="ref\Tables\CameraCard.sql" />
+    <Build Include="data\Tables\WaterQualitypH.sql" />
+    <Build Include="data\Tables\Visit.sql" />
+    <Build Include="data\Tables\WellSite.sql" />
+    <Build Include="ref\Tables\QuadratSize.sql" />
+    <Build Include="data\Tables\PhotoActivity.sql" />
+    <Build Include="lookup\Tables\PersonnelActive.sql" />
+    <Build Include="data\Tables\WaterQualitySpCond.sql" />
+    <Build Include="lookup\Tables\DataProcessingLevel.sql" />
+    <Build Include="data\Tables\WaterQualityTemperature.sql" />
+    <Build Include="lookup\Tables\UTMZone.sql" />
+    <Build Include="data\Tables\WaterQualityDO.sql" />
+    <Build Include="lookup\Tables\PersonnelRole.sql" />
+    <Build Include="metadata\Views\TableDescriptions.sql" />
+    <Build Include="metadata\Views\FieldDescriptions.sql" />
+    <Build Include="dbo\Stored Procedures\renameTable.sql" />
+    <Build Include="Security\analysis.sql" />
+    <Build Include="Security\data.sql" />
+    <Build Include="Security\lookup.sql" />
+    <Build Include="Security\metadata.sql" />
+    <Build Include="Security\qc.sql" />
+    <Build Include="Security\ref.sql" />
+    <Build Include="data\Tables\DischargeEstimated.sql" />
+    <Build Include="data\Tables\DischargeVolumetric.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="mojn-sls-database.refactorlog" />
   </ItemGroup>
 </Project>
