@@ -7,4 +7,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DOInstrumentID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="eadf3b8d-d038-40e9-a3e1-7309a8979027" ChangeDateTime="10/17/2019 18:57:25">
+    <Property Name="ElementName" Value="[data].[DischargePressureTransducer].[BatteryVoltage_V]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[data].[DischargePressureTransducer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BatteryLevel" />
+  </Operation>
 </Operations>

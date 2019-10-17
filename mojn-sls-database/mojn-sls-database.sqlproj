@@ -104,11 +104,10 @@
     <Build Include="lookup\Tables\PTMemoryCleared.sql" />
     <Build Include="data\Tables\WellLevel.sql" />
     <Build Include="lookup\Tables\PTFileDownloaded.sql" />
-    <Build Include="data\Tables\DischargePoolStage.sql" />
+    <Build Include="data\Tables\DischargePressureTransducer.sql" />
     <Build Include="ref\Tables\Camera.sql" />
     <Build Include="data\Tables\DischargeSpringbrookLength.sql" />
     <Build Include="ref\Tables\Protocol.sql" />
-    <Build Include="data\Tables\DischargePTDownload.sql" />
     <Build Include="ref\Tables\NetSize.sql" />
     <Build Include="lookup\Tables\SurfaceWaterPresent.sql" />
     <Build Include="ref\Tables\CameraCard.sql" />
@@ -135,6 +134,7 @@
     <Build Include="Security\ref.sql" />
     <Build Include="data\Tables\DischargeEstimated.sql" />
     <Build Include="data\Tables\DischargeVolumetric.sql" />
+    <Build Include="data\Tables\DischargeGageReading.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
