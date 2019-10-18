@@ -18,9 +18,9 @@
 	CONSTRAINT [CK_DischargePTDownload_FileName_DisallowZeroLength] CHECK (len([FileName])>(0)),
     CONSTRAINT [CK_DischargePTDownload_RecordCount_range] CHECK ([RecordCount]>=(0)),
 	CONSTRAINT [FK_DischargePressureTransducer_Visit] FOREIGN KEY ([VisitID]) REFERENCES [data].[Visit] ([ID]),
-    CONSTRAINT [FK_DischargePressureTransducer_PTBatteryReplaced] FOREIGN KEY ([PTBatteryReplacedID]) REFERENCES [lookup].[PTBatteryReplaced] ([ID]),
-    CONSTRAINT [FK_DischargePressureTransducer_PTFileDownloaded] FOREIGN KEY ([PTFileDownloadedID]) REFERENCES [lookup].[PTFileDownloaded] ([ID]),
-    CONSTRAINT [FK_DischargePressureTransducer_PTMemoryCleared] FOREIGN KEY ([PTMemoryClearedID]) REFERENCES [lookup].[PTMemoryCleared] ([ID])
+    CONSTRAINT [FK_DischargePressureTransducer_PTBatteryReplaced] FOREIGN KEY ([PTBatteryReplacedID]) REFERENCES [lookup].[YesNo] ([ID]),
+    CONSTRAINT [FK_DischargePressureTransducer_PTFileDownloaded] FOREIGN KEY ([PTFileDownloadedID]) REFERENCES [lookup].[YesNo] ([ID]),
+    CONSTRAINT [FK_DischargePressureTransducer_PTMemoryCleared] FOREIGN KEY ([PTMemoryClearedID]) REFERENCES [lookup].[YesNo] ([ID])
 );
 
 

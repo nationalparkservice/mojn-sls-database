@@ -1,17 +1,18 @@
 ﻿CREATE TABLE [data].[Visit] (
     [ID]          UNIQUEIDENTIFIER        NOT NULL,
 	[Park]		  VARCHAR (4)    NOT NULL,
-    [SpringCode]      VARCHAR (11)   NOT NULL,
+    [SiteID]      VARCHAR (11)   NOT NULL,
     [VisitDate]   DATETIME2 (0)  NOT NULL,
     [StartTime]   DATETIME2 (0)  NULL,
-	[BMICollected]	  VARCHAR (1) NOT NULL,
-	[ChemCollected]	  VARCHAR (1) NOT NULL,
+	[FlowConditionID] VARCHAR (2) NOT NULL,
+	[BMICollected]	  VARCHAR (2) NOT NULL,
+	[ChemCollected]	  VARCHAR (2) NOT NULL,
 	[WQCollected]	  VARCHAR (50) NOT NULL,
 	[WQNotCollectedReason]	  VARCHAR (30),
-	[VolDischargeCollected]	  VARCHAR (1) NOT NULL,
-	[EstDischargeCollected]	  VARCHAR (1) NOT NULL,
-	[PTDataCollected]	  VARCHAR (1) NOT NULL,
-	[GageDataCollected]	  VARCHAR (1) NOT NULL,
+	[VolDischargeCollected]	  VARCHAR (2) NOT NULL,
+	[EstDischargeCollected]	  VARCHAR (2) NOT NULL,
+	[PTDataCollected]	  VARCHAR (2) NOT NULL,
+	[GageDataCollected]	  VARCHAR (2) NOT NULL,
     [Notes]       VARCHAR (2000) NULL,
     [ProtocolID]  TINYINT        NOT NULL,
     [DateCreated] DATETIME2 (0)  CONSTRAINT [DF_Visit_DateCreated] DEFAULT (getdate()) NOT NULL,
@@ -19,13 +20,20 @@
     CONSTRAINT [CK_Visit_Notes_DisallowZeroLength] CHECK (len([Notes])>(0)),
     CONSTRAINT [CK_Visit_VisitDate_range] CHECK ([VisitDate]<=getdate() AND [VisitDate]>=CONVERT([date],'01/01/2012',(101))),
     CONSTRAINT [FK_Visit_Protocol] FOREIGN KEY ([ProtocolID]) REFERENCES [ref].[Protocol] ([ID]),
-    CONSTRAINT [FK_Visit_Site] FOREIGN KEY ([SpringCode]) REFERENCES [data].[Site] ([Code])
+    CONSTRAINT [FK_Visit_Site] FOREIGN KEY ([SiteID]) REFERENCES [data].[Site] ([ID]),
+	CONSTRAINT [FK_Visit_FlowCondition] FOREIGN KEY ([FlowConditionID]) REFERENCES [lookup].[FlowCondition] ([ID]),
+	CONSTRAINT [FK_Visit_BMICollected] FOREIGN KEY ([BMICollected]) REFERENCES [lookup].[YesNo] ([ID]),
+	CONSTRAINT [FK_Visit_ChemCollected] FOREIGN KEY ([ChemCollected]) REFERENCES [lookup].[YesNo] ([ID]),
+	CONSTRAINT [FK_Visit_VolDischargeCollected] FOREIGN KEY ([VolDischargeCollected]) REFERENCES [lookup].[YesNo] ([ID]),
+	CONSTRAINT [FK_Visit_EstDischargeCollected] FOREIGN KEY ([EstDischargeCollected]) REFERENCES [lookup].[YesNo] ([ID]),
+	CONSTRAINT [FK_Visit_PTDataCollected] FOREIGN KEY ([PTDataCollected]) REFERENCES [lookup].[YesNo] ([ID]),
+	CONSTRAINT [FK_Visit_GageDataCollected] FOREIGN KEY ([GageDataCollected]) REFERENCES [lookup].[YesNo] ([ID])
 );
 
 
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [UX_Visit_SiteID_VisitDate_VisitTime]
-    ON [data].[Visit]([SpringCode] ASC, [VisitDate] ASC, [StartTime] ASC);
+    ON [data].[Visit]([SiteID] ASC, [VisitDate] ASC, [StartTime] ASC);
 
 
 GO
@@ -41,7 +49,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Park code an
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Spring code and foreign key to data.Site (the springs in the sampling frame)', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Visit', @level2type = N'COLUMN', @level2name = N'SpringCode';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Spring code and foreign key to data.Site (the springs in the sampling frame)', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Visit', @level2type = N'COLUMN', @level2name = 'SiteID';
 
 
 GO

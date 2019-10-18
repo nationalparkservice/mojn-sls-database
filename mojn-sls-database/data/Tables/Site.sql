@@ -1,9 +1,8 @@
 ﻿CREATE TABLE [data].[Site] (
-    [ID]               INT            IDENTITY (1, 1) NOT NULL,
-    [ParkID]           INT            NOT NULL,
+	[ID]             VARCHAR (11)   NOT NULL,
+    [ParkID]           VARCHAR(4)            NOT NULL,
     [SiteTypeID]       TINYINT        NOT NULL,
     [Name]             VARCHAR (50)   NOT NULL,
-    [Code]             VARCHAR (11)   NOT NULL,
     [AccessDirections] VARCHAR (4000) NULL,
     [X_UTM_NAD83_11N]  DECIMAL (8, 2) NOT NULL,
     [Y_UTM_NAD83_11N]  DECIMAL (9, 2) NOT NULL,
@@ -13,27 +12,23 @@
     [Lon_WGS84]        DECIMAL (9, 6) NOT NULL,
     [DateCreated]      DATETIME2 (0)  CONSTRAINT [DF_Site_DateCreated] DEFAULT (getdate()) NOT NULL,
     CONSTRAINT [PK_Site] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [CK_Site_Code_DisallowZeroLength] CHECK (len([Code])>(0)),
     CONSTRAINT [CK_Site_Name_DisallowZeroLength] CHECK (len([Name])>(0)),
     CONSTRAINT [CK_Site_X_UTM_NAD83_11N_range] CHECK ([X_UTM_NAD83_11N]>=(200000) AND [X_UTM_NAD83_11N]<=(900000)),
     CONSTRAINT [CK_Site_X_UTM_NAD83_12N_range] CHECK ([X_UTM_NAD83_12N]>=(200000) AND [X_UTM_NAD83_12N]<=(900000)),
     CONSTRAINT [CK_Site_Y_UTM_NAD83_11N_range] CHECK ([Y_UTM_NAD83_11N]>=(3500000) AND [Y_UTM_NAD83_11N]<=(4350000)),
     CONSTRAINT [CK_Site_Y_UTM_NAD83_12N_range] CHECK ([Y_UTM_NAD83_12N]>=(3500000) AND [Y_UTM_NAD83_12N]<=(4350000)),
+	CONSTRAINT [FK_Site_Park] FOREIGN KEY ([ParkID]) REFERENCES [lookup].[Park] ([ID]),
     CONSTRAINT [FK_Site_SiteType] FOREIGN KEY ([SiteTypeID]) REFERENCES [lookup].[SiteType] ([ID])
 );
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [UX_Site_Code]
-    ON [data].[Site]([Code] ASC);
 
-
-GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'The springs contained in the sampling frame', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Site';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Primary key for this table', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Site', @level2type = N'COLUMN', @level2name = N'ID';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Site code and primary key for this table', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Site', @level2type = N'COLUMN', @level2name = N'ID';
 
 
 GO
@@ -46,10 +41,6 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Foreign key 
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Site name', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Site', @level2type = N'COLUMN', @level2name = N'Name';
-
-
-GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Unique code assigned to each site', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'Site', @level2type = N'COLUMN', @level2name = N'Code';
 
 
 GO

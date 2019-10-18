@@ -1,10 +1,8 @@
 ﻿CREATE TABLE [data].[VisitPersonnel] (
-    [VisitID]         INT           NOT NULL,
+    [VisitID]         UNIQUEIDENTIFIER           NOT NULL,
     [PersonnelID]     INT           NOT NULL,
-    [PersonnelRoleID] TINYINT       NOT NULL,
     [DateCreated]     DATETIME2 (0) CONSTRAINT [DF_VisitPersonnel_DateCreated] DEFAULT (getdate()) NOT NULL,
-    CONSTRAINT [PK_VisitPersonnel] PRIMARY KEY CLUSTERED ([VisitID] ASC, [PersonnelID] ASC, [PersonnelRoleID] ASC),
-    CONSTRAINT [FK_VisitPersonnel_PersonnelRole] FOREIGN KEY ([PersonnelRoleID]) REFERENCES [lookup].[PersonnelRole] ([ID]),
+    CONSTRAINT [PK_VisitPersonnel] PRIMARY KEY CLUSTERED ([VisitID] ASC, [PersonnelID] ASC),
     CONSTRAINT [FK_VisitPersonnel_Visit] FOREIGN KEY ([VisitID]) REFERENCES [data].[Visit] ([ID])
 );
 
@@ -22,7 +20,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Foreign key 
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Foreign key to lookup.PersonnelRole (data management role, from collection to QA/QC and certification)', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'VisitPersonnel', @level2type = N'COLUMN', @level2name = N'PersonnelRoleID';
+
 
 
 GO

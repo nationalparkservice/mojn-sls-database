@@ -1,12 +1,13 @@
 ﻿CREATE TABLE [ref].[PhotoShortDescription] (
-    [ID]                TINYINT       NOT NULL,
+    [ID]                VARCHAR (5)       NOT NULL,
     [Label]             VARCHAR (10)  NOT NULL,
     [Summary]           VARCHAR (200) NOT NULL,
-    [IsMonitoringPhoto] BIT           NOT NULL,
+    [ApplicableSpringID]			VARCHAR (11)  NOT NULL,
     CONSTRAINT [PK_PhotoShortDescription] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [CK_PhotoShortDescription_Label_DisallowZeroLength] CHECK (len([Label])>(0)),
     CONSTRAINT [CK_PhotoShortDescription_Summary_DisallowZeroLength] CHECK (len([Summary])>(0)),
-    CONSTRAINT [UN_PhotoShortDescription_Label] UNIQUE NONCLUSTERED ([Label] ASC)
+    CONSTRAINT [UN_PhotoShortDescription_Label] UNIQUE NONCLUSTERED ([Label] ASC),
+	CONSTRAINT [FK_PhotoShortDescription_ApplicableSpring] FOREIGN KEY ([ApplicableSpringID]) REFERENCES [data].[Site] ([ID])
 );
 
 
@@ -27,5 +28,5 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Additional d
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Indicates whether this photo is of potential scientific value, however anecdotal', @level0type = N'SCHEMA', @level0name = N'ref', @level1type = N'TABLE', @level1name = N'PhotoShortDescription', @level2type = N'COLUMN', @level2name = N'IsMonitoringPhoto';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Spring ID for photos that only apply to a specific spring', @level0type = N'SCHEMA', @level0name = N'ref', @level1type = N'TABLE', @level1name = N'PhotoShortDescription', @level2type = N'COLUMN', @level2name = N'ApplicableSpringID';
 

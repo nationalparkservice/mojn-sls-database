@@ -100,7 +100,7 @@
     <Build Include="ref\Tables\WellTapeCorrection.sql" />
     <Build Include="ref\Tables\WaterQualityInstrument.sql" />
     <Build Include="lookup\Tables\BMIStartLocation.sql" />
-    <Build Include="lookup\Tables\PTBatteryReplaced.sql" />
+    <Build Include="lookup\Tables\YesNo.sql" />
     <Build Include="lookup\Tables\PTMemoryCleared.sql" />
     <Build Include="data\Tables\WellLevel.sql" />
     <Build Include="lookup\Tables\PTFileDownloaded.sql" />
@@ -135,6 +135,9 @@
     <Build Include="data\Tables\DischargeEstimated.sql" />
     <Build Include="data\Tables\DischargeVolumetric.sql" />
     <Build Include="data\Tables\DischargeGageReading.sql" />
+    <Build Include="lookup\Tables\WQDataTypes.sql" />
+    <Build Include="lookup\Tables\WQNotCollectedReason.sql" />
+    <Build Include="lookup\Tables\GageType.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
