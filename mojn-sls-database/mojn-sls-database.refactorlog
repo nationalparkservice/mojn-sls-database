@@ -21,4 +21,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="SiteID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="37bbe6ad-01cb-4865-b8e3-9d1a3f1be94f" ChangeDateTime="10/18/2019 21:57:10">
+    <Property Name="ElementName" Value="[data].[WaterQualityDO].[Subsite]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[data].[WaterQualityDO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubsiteID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="71f01ccb-a24d-4f6f-89ed-dc16b1b2d99a" ChangeDateTime="10/18/2019 21:57:27">
+    <Property Name="ElementName" Value="[data].[WaterQualitypH].[Subsite]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[data].[WaterQualitypH]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubsiteID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="82a2aed0-d88e-4726-8219-b8cb30d2d828" ChangeDateTime="10/18/2019 21:57:47">
+    <Property Name="ElementName" Value="[data].[WaterQualitySpCond].[Subsite]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[data].[WaterQualitySpCond]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubsiteID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="91394a51-e9e2-4176-9de5-4a7227e4cc47" ChangeDateTime="10/18/2019 21:58:13">
+    <Property Name="ElementName" Value="[data].[WaterQualityTemperature].[Subsite]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[data].[WaterQualityTemperature]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubsiteID" />
+  </Operation>
 </Operations>

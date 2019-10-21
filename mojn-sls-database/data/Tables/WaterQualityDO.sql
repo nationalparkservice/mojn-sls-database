@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [data].[WaterQualityDO] (
     [ID]                            UNIQUEIDENTIFIER	NOT NULL,
 	[VisitID]						UNIQUEIDENTIFIER	NOT NULL,
-	[Subsite]						VARCHAR (15)	NULL,
+	[SubsiteID]						VARCHAR (15)	NULL,
 	[DOInstrumentID]		SMALLINT       NOT NULL,
 	[IsDepthProfile]				VARCHAR (1)    NOT NULL,
 	[MeasurementDepth_ft]			DECIMAL (5, 2) NULL,
@@ -17,7 +17,7 @@
     CONSTRAINT [CK_WaterQualityDO_DataQualityFlagNote_DisallowZeroLength] CHECK (len([DataQualityFlagNote])>(0)),
     CONSTRAINT [CK_WaterQualityDO_DissolvedOxygen_mg_per_L_range] CHECK ([DissolvedOxygen_mg_per_L]>=(0) AND [DissolvedOxygen_mg_per_L]<=(16)),
     CONSTRAINT [FK_WaterQualityDO_DataQualityFlag] FOREIGN KEY ([DataQualityFlagID]) REFERENCES [lookup].[DataQualityFlag] ([ID]),
-    CONSTRAINT [FK_WaterQualityDO_WaterQualitySubsite] FOREIGN KEY ([Subsite]) REFERENCES [data].[Subsite] ([SubsiteCode]),
+    CONSTRAINT [FK_WaterQualityDO_WaterQualitySubsite] FOREIGN KEY ([SubsiteID]) REFERENCES [data].[Subsite] ([ID]),
 	CONSTRAINT [FK_WaterQualityDO_Visit] FOREIGN KEY ([VisitID]) REFERENCES [data].[Visit] ([ID])
 );
 
@@ -36,7 +36,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Foreign key 
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Subsite code and foreign key to data.Subsite', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'WaterQualityDO', @level2type = N'COLUMN', @level2name = N'Subsite';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Subsite code and foreign key to data.Subsite', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'WaterQualityDO', @level2type = N'COLUMN', @level2name = 'SubsiteID';
 
 
 GO

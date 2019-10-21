@@ -138,6 +138,7 @@
     <Build Include="lookup\Tables\WQDataTypes.sql" />
     <Build Include="lookup\Tables\WQNotCollectedReason.sql" />
     <Build Include="lookup\Tables\GageType.sql" />
+    <Build Include="lookup\Tables\BatteryUnits.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">

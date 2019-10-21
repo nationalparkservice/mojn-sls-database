@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [data].[WaterQualityTemperature] (
     [ID]                            UNIQUEIDENTIFIER	NOT NULL,
 	[VisitID]						UNIQUEIDENTIFIER	NOT NULL,
-	[Subsite]						VARCHAR (15)	NULL,
+	[SubsiteID]						VARCHAR (15)	NULL,
 	[TemperatureInstrumentID]		SMALLINT       NOT NULL,
 	[IsDepthProfile]				VARCHAR (1)    NOT NULL,
 	[MeasurementDepth_ft]			DECIMAL (5, 2) NULL,
@@ -14,7 +14,7 @@
     CONSTRAINT [PK_WaterQualityTemp] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [CK_WaterQualityTemp_WaterTemperature_C_range] CHECK ([WaterTemperature_C]>=(-5) AND [WaterTemperature_C]<=(45) OR [WaterTemperature_C]=(-999)),
     CONSTRAINT [CK_WaterQualityTemp_DataQualityFlagNote_DisallowZeroLength] CHECK (len([DataQualityFlagNote])>(0)),
-    CONSTRAINT [FK_WaterQualityTemp_Subsite] FOREIGN KEY ([Subsite]) REFERENCES [data].[Subsite] ([SubsiteCode]),
+    CONSTRAINT [FK_WaterQualityTemp_Subsite] FOREIGN KEY ([SubsiteID]) REFERENCES [data].[Subsite] ([ID]),
     CONSTRAINT [FK_WaterQualityTemp_Visit] FOREIGN KEY ([VisitID]) REFERENCES [data].[Visit] ([ID]),
 	CONSTRAINT [FK_WaterQualityTemp_DataQualityFlag] FOREIGN KEY ([DataQualityFlagID]) REFERENCES [lookup].[DataQualityFlag] ([ID])
 );
@@ -34,7 +34,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Foreign key 
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Subsite code and foreign key to data.Subsite', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'WaterQualityTemperature', @level2type = N'COLUMN', @level2name = N'Subsite';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Subsite code and foreign key to data.Subsite', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'WaterQualityTemperature', @level2type = N'COLUMN', @level2name = 'SubsiteID';
 
 
 GO

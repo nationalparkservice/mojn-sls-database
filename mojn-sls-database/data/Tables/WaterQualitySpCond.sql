@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [data].[WaterQualitySpCond] (
     [ID]                            UNIQUEIDENTIFIER	NOT NULL,
 	[VisitID]						UNIQUEIDENTIFIER	NOT NULL,
-	[Subsite]						VARCHAR (15)	NULL,
+	[SubsiteID]						VARCHAR (15)	NULL,
 	[SpCondInstrumentID]		SMALLINT       NOT NULL,
 	[IsDepthProfile]				VARCHAR (1)    NOT NULL,
 	[MeasurementDepth_ft]			DECIMAL (5, 2) NULL,
@@ -16,7 +16,7 @@
     CONSTRAINT [CK_WaterQualitySpCond_SpecificConductance_microS_per_cm_range] CHECK ([SpecificConductance_microS_per_cm]>=(0) AND [SpecificConductance_microS_per_cm]<=(200000) OR [SpecificConductance_microS_per_cm]=(-999)),
     CONSTRAINT [FK_WaterQualitySpCond_DataQualityFlag] FOREIGN KEY ([DataQualityFlagID]) REFERENCES [lookup].[DataQualityFlag] ([ID]),
     CONSTRAINT [FK_WaterQualitySpCond_Visit] FOREIGN KEY ([VisitID]) REFERENCES [data].[Visit] ([ID]),
-	CONSTRAINT [FK_WaterQualitySpCond_WaterQualitySubsite] FOREIGN KEY ([Subsite]) REFERENCES [data].[Subsite] ([SubsiteCode])
+	CONSTRAINT [FK_WaterQualitySpCond_WaterQualitySubsite] FOREIGN KEY ([SubsiteID]) REFERENCES [data].[Subsite] ([ID])
 );
 
 
@@ -34,7 +34,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Foreign key 
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Subsite code and foreign key to data.Subsite', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'WaterQualitySpCond', @level2type = N'COLUMN', @level2name = N'Subsite';
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Subsite code and foreign key to data.Subsite', @level0type = N'SCHEMA', @level0name = N'data', @level1type = N'TABLE', @level1name = N'WaterQualitySpCond', @level2type = N'COLUMN', @level2name = 'SubsiteID';
 
 
 GO
